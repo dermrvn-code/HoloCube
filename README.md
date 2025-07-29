@@ -1,8 +1,9 @@
 <!-- @format -->
 <p align="center">
-<!--     <img width="200" align="center" alt="logo" src="https://github.com/user-attachments/assets/c29d8604-30e7-4134-9d5d-6729ecffcb6d" /> -->
+    <img src="https://github.com/user-attachments/assets/a16920a6-b48e-49fc-b222-bdfa884a0696" width=400 /><br>
+    <img src="https://github.com/user-attachments/assets/f70cb575-aef8-4256-8a35-341477ba35c9" width=400 alt="HoloCube"/>
 </p>
-<h3 align="center">HoloCube</h3>
+
 
 <p align="center">
     <img src="https://img.shields.io/badge/-Unity_6.1-000000?style=for-the-badge&logo=Unity&logoColor=#FFFFFF">
