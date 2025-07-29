@@ -13,10 +13,10 @@ public class GameBoard : MonoBehaviour
 
     void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
 
         CreateFaces();
-        player = FindObjectOfType<Player>();
+        player = FindFirstObjectByType<Player>();
         player.currentFace = faceMap[gameManager.startFace];
         player.x = gameManager.startPosition.x;
         player.y = gameManager.startPosition.y;

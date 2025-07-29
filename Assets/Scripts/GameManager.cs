@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
 
         countdownText = countdown.GetComponentInChildren<TMP_Text>();
-        gameOverScreen = FindObjectOfType<GameOverScreen>();
+        gameOverScreen = FindFirstObjectByType<GameOverScreen>();
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         highScoreText.text = highScore.ToString();
 

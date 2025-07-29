@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
         if (currentFace == null)
         {
             Debug.LogError("Player: currentFace is not assigned!");
