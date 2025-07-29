@@ -1,7 +1,7 @@
 <!-- @format -->
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/0619deb9-e064-4624-9825-656e39a027ae" width=200 />
-    <img src="https://github.com/user-attachments/assets/f70cb575-aef8-4256-8a35-341477ba35c9" width=200 alt="HoloCube"/>
+    <img src="https://github.com/user-attachments/assets/0619deb9-e064-4624-9825-656e39a027ae" width=500 /><br>
+    <img src="https://github.com/user-attachments/assets/f70cb575-aef8-4256-8a35-341477ba35c9" width=500 alt="HoloCube"/>
 </p>
 
 
