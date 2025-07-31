@@ -23,14 +23,19 @@ public class GameManager : MonoBehaviour
     public float pointSpawnInterval = 5f;
     public float obstacleSpawnInterval = 15f;
 
+    [Header("Idle Settings")]
+    public float idleTimeout = 10f;
+
     [Header("UI References")]
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text highScoreText;
     [SerializeField] TMP_Text timeText;
     [SerializeField] GameObject countdown;
+    [SerializeField] GameObject pausePanel;
 
     [NonSerialized] public bool isRunning = false;
     [NonSerialized] public bool isGameOver = false;
+    [NonSerialized] public bool paused = false;
 
     TMP_Text countdownText;
     GameOverScreen gameOverScreen;
@@ -123,7 +128,7 @@ public class GameManager : MonoBehaviour
         gameOverScreen.GameOver(score, highScore, elapsedTime, newHighscore, Restart);
     }
 
-    void Restart()
+    public void Restart()
     {
         var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene.buildIndex);
@@ -135,5 +140,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("HighScore", highScore);
         PlayerPrefs.Save();
         highScoreText.text = highScore.ToString();
+    }
+
+    public void Pause()
+    {
+        isRunning = false;
+        pausePanel.SetActive(true);
+        paused = true;
     }
 }

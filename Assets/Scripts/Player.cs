@@ -23,24 +23,45 @@ public class Player : MonoBehaviour
         SelectCurrentTile();
     }
 
+    float timeOffset = 0f;
     void Update()
     {
-        if (!gameManager.isRunning)
+        if (!gameManager.isRunning && !gameManager.paused)
             return;
 
+        if (timeOffset == 0f)
+            timeOffset = Time.time;
+
+        float timeSinceStart = Time.time - timeOffset;
+
         float moveCooldown = 1f / gameManager.playerSpeed;
-        if (Time.time - lastMoveTime < moveCooldown)
+        if (timeSinceStart - lastMoveTime < moveCooldown)
             return;
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
+        if (horizontal == 0 && vertical == 0)
+            return;
+
+        if (gameManager.paused)
+        {
+            gameManager.Restart();
+            return;
+        }
+
+        lastMoveTime = timeSinceStart;
         if (vertical > 0) TryMove(Direction.Up);
         else if (vertical < 0) TryMove(Direction.Down);
         else if (horizontal < 0) TryMove(Direction.Left);
         else if (horizontal > 0) TryMove(Direction.Right);
 
-        lastMoveTime = Time.time;
+
+        if (timeSinceStart - lastMoveTime > gameManager.idleTimeout)
+        {
+            gameManager.Pause();
+            return;
+        }
     }
 
     void TryMove(Direction dir)
