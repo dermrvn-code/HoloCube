@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        LoadValues();
         if (startPosition == Vector2Int.zero)
         {
             int center = Mathf.FloorToInt(gridSize / 2);
@@ -60,6 +61,15 @@ public class GameManager : MonoBehaviour
 
         ResetDisplay();
         StartCoroutine(StartCountdown());
+    }
+
+    void LoadValues()
+    {
+        gridSize = PlayerPrefs.GetInt("GridSize", 10);
+        playerSpeed = PlayerPrefs.GetFloat("PlayerSpeed", 20f);
+        cubeSpeed = PlayerPrefs.GetFloat("CubeSpeed", 20f);
+        pointSpawnInterval = PlayerPrefs.GetFloat("PointsInterval", 5f);
+        obstacleSpawnInterval = PlayerPrefs.GetFloat("ObstacleInterval", 15f);
     }
 
     IEnumerator StartCountdown()

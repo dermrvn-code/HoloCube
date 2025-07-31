@@ -41,16 +41,16 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        if (horizontal == 0 && vertical == 0)
-            return;
-
-        if (gameManager.paused)
+        if (horizontal != 0 || vertical != 0)
         {
-            gameManager.Restart();
-            return;
+            lastMoveTime = timeSinceStart;
+            if (gameManager.paused)
+            {
+                gameManager.Restart();
+                return;
+            }
         }
 
-        lastMoveTime = timeSinceStart;
         if (vertical > 0) TryMove(Direction.Up);
         else if (vertical < 0) TryMove(Direction.Down);
         else if (horizontal < 0) TryMove(Direction.Left);
