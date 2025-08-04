@@ -16,7 +16,7 @@ public class Settings : MonoBehaviour
     [SerializeField] CubeDisplay cubeDisplay;
 
     [Header("Input")]
-    [SerializeField] KeyCode enter1 = KeyCode.KeypadEnter;
+    [SerializeField] KeyCode enter1 = KeyCode.Space;
     [SerializeField] KeyCode enter2 = KeyCode.Joystick1Button0;
 
 

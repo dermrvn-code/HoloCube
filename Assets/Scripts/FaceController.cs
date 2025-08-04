@@ -80,6 +80,9 @@ public class FaceController : MonoBehaviour
     public void GenerateSpecialTiles(Tile.TileType type = Tile.TileType.Point, float maxFill = 1 / 8f)
     {
         int maxFillFields = Mathf.FloorToInt(gridSize * gridSize * maxFill);
+        if (maxFillFields <= 0)
+            maxFillFields = 1;
+
         if (type == Tile.TileType.Point)
         {
             if (pointsOnFace >= maxFillFields)

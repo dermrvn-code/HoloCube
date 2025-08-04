@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +34,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text timeText;
     [SerializeField] GameObject countdown;
     [SerializeField] GameObject pausePanel;
+
+    [Header("Key Bindings")]
+    [SerializeField] KeyCode toMenu1 = KeyCode.Escape;
+    [SerializeField] KeyCode toMenu2 = KeyCode.Joystick1Button2;
 
     [NonSerialized] public bool isRunning = false;
     [NonSerialized] public bool isGameOver = false;
@@ -85,10 +91,27 @@ public class GameManager : MonoBehaviour
         startTimeOffset = Time.timeSinceLevelLoad;
     }
 
+    float holdTime = 0f;
+    const float requiredHoldDuration = 5;
+
     void Update()
     {
         if (!isRunning) return;
         UpdateTime();
+
+        // Check for key hold duration
+        if (Input.GetKey(toMenu1) || Input.GetKey(toMenu2))
+        {
+            holdTime += Time.deltaTime;
+            if (holdTime >= requiredHoldDuration)
+            {
+                SceneManager.LoadScene("Settings");
+            }
+        }
+        else
+        {
+            holdTime = 0f;
+        }
     }
 
     public void IncreaseScore()

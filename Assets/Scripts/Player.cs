@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
         SelectCurrentTile();
     }
 
+
+    public bool allowHolding = true;
+    bool inputConsumed = false;
     float timeOffset = 0f;
     void Update()
     {
@@ -40,6 +43,24 @@ public class Player : MonoBehaviour
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
+
+        if (allowHolding)
+        {
+            if ((horizontal != 0 || vertical != 0) && !inputConsumed)
+            {
+                inputConsumed = true;
+            }
+            else if (horizontal == 0 && vertical == 0)
+            {
+                inputConsumed = false;
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
+
 
         if (horizontal != 0 || vertical != 0)
         {
