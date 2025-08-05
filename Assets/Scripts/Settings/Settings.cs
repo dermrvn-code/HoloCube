@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Settings : MonoBehaviour
 {
@@ -14,10 +15,6 @@ public class Settings : MonoBehaviour
 
     [Header("Display")]
     [SerializeField] CubeDisplay cubeDisplay;
-
-    [Header("Input")]
-    [SerializeField] KeyCode enter1 = KeyCode.Space;
-    [SerializeField] KeyCode enter2 = KeyCode.Joystick1Button0;
 
 
 
@@ -49,14 +46,24 @@ public class Settings : MonoBehaviour
         currentSlider = sliders[currentIndex];
         currentSlider.selected = true;
 
-        float vertical = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        InputAction moveAction = InputSystem.actions.FindAction("Move");
+        if (moveAction == null)
+        {
+            Debug.LogError("Settings: Move action not found in Input System.");
+            return;
+        }
+        Vector2 movement = moveAction.ReadValue<Vector2>();
+
+        float vertical = movement.y;
+        float horizontal = movement.x;
 
         // Prevent overshooting by adding a cooldown between keypresses
         float cooldown = 0.2f;
         if (Time.time - lastUpdateTime > cooldown)
         {
-            if (Input.GetKeyDown(enter1) || Input.GetKeyDown(enter2))
+            InputAction submitAction = InputSystem.actions.FindAction("Submit");
+
+            if (submitAction.IsPressed())
             {
                 Next();
                 return;

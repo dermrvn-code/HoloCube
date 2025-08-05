@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -41,8 +42,16 @@ public class Player : MonoBehaviour
         if (timeSinceStart - lastMoveTime < moveCooldown)
             return;
 
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        InputAction moveAction = InputSystem.actions.FindAction("Move");
+        if (moveAction == null)
+        {
+            Debug.LogError("Player: Move action not found in Input System.");
+            return;
+        }
+
+        Vector2 movement = moveAction.ReadValue<Vector2>();
+        float horizontal = movement.x;
+        float vertical = movement.y;
 
         if (allowHolding)
         {
