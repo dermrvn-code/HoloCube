@@ -16,4 +16,9 @@ HoloCube is a simple 3D cube game build to be used with the HoloView. It is buil
 
 ## Installation
 
-You can simply clone this repository and start it using Unity.
+You can simply clone this repository and start it using Unity. Or use the provided Android APK published under the Releases [here](https://github.com/dermrvn-code/HoloCube/releases/tag/1.1).
+
+## Usage
+The game is build for Android, but can also be played using the Keyboard.<br>
+To use this app with a smartphone, you need to connect either a joystick or any type of game controller. <br><br>
+If the controls are not working using your control device, update the Inputs for `Move`, `Submit` and `Menu` in the Unity Project by opening the Input Actions editor over `Assets/InputSystem_Actions.inputactions`
