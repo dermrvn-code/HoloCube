@@ -58,33 +58,25 @@ public class Player : MonoBehaviour
             if ((horizontal != 0 || vertical != 0) && !inputConsumed)
             {
                 inputConsumed = true;
+
+                lastMoveTime = timeSinceStart;
+                if (gameManager.paused)
+                {
+                    gameManager.Restart();
+                    return;
+                }
+
+                if (vertical > 0) TryMove(Direction.Up);
+                else if (vertical < 0) TryMove(Direction.Down);
+                else if (horizontal < 0) TryMove(Direction.Left);
+                else if (horizontal > 0) TryMove(Direction.Right);
+
             }
             else if (horizontal == 0 && vertical == 0)
             {
                 inputConsumed = false;
-                return;
-            }
-            else
-            {
-                return;
             }
         }
-
-
-        if (horizontal != 0 || vertical != 0)
-        {
-            lastMoveTime = timeSinceStart;
-            if (gameManager.paused)
-            {
-                gameManager.Restart();
-                return;
-            }
-        }
-
-        if (vertical > 0) TryMove(Direction.Up);
-        else if (vertical < 0) TryMove(Direction.Down);
-        else if (horizontal < 0) TryMove(Direction.Left);
-        else if (horizontal > 0) TryMove(Direction.Right);
 
 
         if (timeSinceStart - lastMoveTime > gameManager.idleTimeout)
