@@ -54,8 +54,8 @@ public class Settings : MonoBehaviour
         }
         Vector2 movement = moveAction.ReadValue<Vector2>();
 
-        float vertical = movement.y;
-        float horizontal = movement.x;
+        float horizontal = Mathf.Round(movement.x);
+        float vertical = Mathf.Round(movement.y);
 
         // Prevent overshooting by adding a cooldown between keypresses
         float cooldown = 0.2f;

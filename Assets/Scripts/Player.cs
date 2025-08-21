@@ -50,8 +50,10 @@ public class Player : MonoBehaviour
         }
 
         Vector2 movement = moveAction.ReadValue<Vector2>();
-        float horizontal = movement.x;
-        float vertical = movement.y;
+        float horizontal = Mathf.Round(movement.x);
+        float vertical = Mathf.Round(movement.y);
+
+        Debug.Log($"Player is moving: {horizontal}, {vertical}");
 
         if (allowHolding)
         {
