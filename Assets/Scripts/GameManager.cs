@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     public float pointSpawnInterval = 5f;
     public float obstacleSpawnInterval = 15f;
 
+    [Header("Mirror Settings")]
+    public bool mirrorView = false;
+
     [Header("Idle Settings")]
     public float idleTimeout = 10f;
 
@@ -72,6 +75,7 @@ public class GameManager : MonoBehaviour
         cubeSpeed = PlayerPrefs.GetFloat("CubeSpeed", 20f);
         pointSpawnInterval = PlayerPrefs.GetFloat("PointsInterval", 5f);
         obstacleSpawnInterval = PlayerPrefs.GetFloat("ObstacleInterval", 15f);
+        mirrorView = PlayerPrefs.GetInt("Mirror", 0) != 0;
     }
 
     IEnumerator StartCountdown()

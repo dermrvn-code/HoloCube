@@ -10,6 +10,7 @@ public class Settings : MonoBehaviour
     [SerializeField] SliderValue playerSpeedSlider;
     [SerializeField] SliderValue pointsSlider;
     [SerializeField] SliderValue obstacleSlider;
+    [SerializeField] SliderValue mirrorSlider;
     [SerializeField] List<SliderValue> sliders;
 
 
@@ -26,6 +27,8 @@ public class Settings : MonoBehaviour
         playerSpeedSlider.OnValueChanged += UpdatePlayerSpeed;
         pointsSlider.OnValueChanged += UpdatePointsInterval;
         obstacleSlider.OnValueChanged += UpdateObstacleInterval;
+        mirrorSlider.OnValueChanged += UpdateMirrorInterval;
+
 
         sliders = new List<SliderValue>
         {
@@ -33,7 +36,8 @@ public class Settings : MonoBehaviour
             cubeSpeedSlider,
             playerSpeedSlider,
             pointsSlider,
-            obstacleSlider
+            obstacleSlider,
+            mirrorSlider
         };
     }
 
@@ -136,6 +140,12 @@ public class Settings : MonoBehaviour
     void UpdateObstacleInterval(int value)
     {
         PlayerPrefs.SetFloat("ObstacleInterval", value);
+        PlayerPrefs.Save();
+    }
+
+    void UpdateMirrorInterval(int value)
+    {
+        PlayerPrefs.SetInt("Mirror", value);
         PlayerPrefs.Save();
     }
 }
