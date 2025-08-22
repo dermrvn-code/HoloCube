@@ -53,8 +53,6 @@ public class Player : MonoBehaviour
         float horizontal = Mathf.Round(movement.x);
         float vertical = Mathf.Round(movement.y);
 
-        Debug.Log($"Player is moving: {horizontal}, {vertical}");
-
         if (allowHolding)
         {
             if ((horizontal != 0 || vertical != 0) && !inputConsumed)
